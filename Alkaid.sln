@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alkaid.RayTracing", "Alkaid.RayTracing\Alkaid.RayTracing.csproj", "{CC68A7DB-BAE4-4372-8DBC-404075DB23FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alkaid.Console", "Alkaid.Console\Alkaid.Console.csproj", "{117FEE70-90D4-4D46-B990-8BD8BCC42F19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alioth", "Alioth\Alioth.csproj", "{0F73B15E-2F95-43F1-9E55-83805BA0D2F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alizoth.WPF", "Alizoth.WPF\Alizoth.WPF.csproj", "{3D1AAF80-8B7C-4CE0-A3C4-F9738F97BD60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC68A7DB-BAE4-4372-8DBC-404075DB23FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC68A7DB-BAE4-4372-8DBC-404075DB23FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC68A7DB-BAE4-4372-8DBC-404075DB23FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC68A7DB-BAE4-4372-8DBC-404075DB23FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{117FEE70-90D4-4D46-B990-8BD8BCC42F19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{117FEE70-90D4-4D46-B990-8BD8BCC42F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{117FEE70-90D4-4D46-B990-8BD8BCC42F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{117FEE70-90D4-4D46-B990-8BD8BCC42F19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F73B15E-2F95-43F1-9E55-83805BA0D2F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F73B15E-2F95-43F1-9E55-83805BA0D2F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F73B15E-2F95-43F1-9E55-83805BA0D2F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F73B15E-2F95-43F1-9E55-83805BA0D2F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D1AAF80-8B7C-4CE0-A3C4-F9738F97BD60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D1AAF80-8B7C-4CE0-A3C4-F9738F97BD60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D1AAF80-8B7C-4CE0-A3C4-F9738F97BD60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D1AAF80-8B7C-4CE0-A3C4-F9738F97BD60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E042656C-BC8A-43EF-83F9-01BCD3E63B91}
+	EndGlobalSection
+EndGlobal
