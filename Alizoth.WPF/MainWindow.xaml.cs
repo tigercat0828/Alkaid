@@ -16,6 +16,7 @@ namespace Alizoth.WPF {
             var settings = new GLWpfControlSettings {
                 MajorVersion = 4,
                 MinorVersion = 6,
+                
 
             };
             OpenTkControl.Start(settings);
