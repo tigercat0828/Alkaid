@@ -4,15 +4,17 @@ namespace Alioth.Primitives {
     public class Primitive : IDisposable {
         public Transform Transform;
         public Color4 Color;
-        public Shader Shader;
+        public static Shader Shader;
 
         protected int VAO, VBO, EBO;
 
-        public Primitive(Transform transform, Color4 color, Shader shader) {
-            Shader = shader;
+        public Primitive(Transform transform, Color4 color) {
             Transform = transform; 
             Color = color;
-
+        }
+        public virtual void GetAABBPoints(out Vector3 A, out Vector3 B) {
+            A = new();
+            B = new();
         }
         public void Dispose() {
             GL.DeleteBuffer(VBO);

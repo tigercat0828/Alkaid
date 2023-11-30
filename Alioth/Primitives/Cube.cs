@@ -1,6 +1,6 @@
 ﻿namespace Alioth.Primitives {
     public class Cube : Primitive {
-        public Cube(Transform transform, Color4 color, Shader shader, Texture texture) : base(transform, color, shader) {
+        public Cube(Transform transform, Color4 color,  Texture texture) : base(transform, color) {
 
             VAO = GL.GenVertexArray();
             GL.BindVertexArray(VAO);

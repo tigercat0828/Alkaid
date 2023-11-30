@@ -1,9 +1,8 @@
 ﻿namespace Alioth {
     internal class AxisRenderer {
         private int VAO, VBO;
-        private Shader Shader;
-        public AxisRenderer(Shader shader) {
-            Shader = shader;
+        public static Shader Shader;
+        public AxisRenderer() {
 
             VAO = GL.GenVertexArray();
             GL.BindVertexArray(VAO);
@@ -14,11 +13,11 @@
 
             GL.BufferData(BufferTarget.ElementArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
 
-            var vertexLocation = shader.GetAttribLocation("aPosition");
+            var vertexLocation = Shader.GetAttribLocation("aPosition");
             GL.EnableVertexAttribArray(vertexLocation);
             GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
 
-            var colorLoocation = shader.GetAttribLocation("aColor");
+            var colorLoocation = Shader.GetAttribLocation("aColor");
             GL.EnableVertexAttribArray(colorLoocation);
             GL.VertexAttribPointer(colorLoocation, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
 

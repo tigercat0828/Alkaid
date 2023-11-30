@@ -40,18 +40,38 @@ public class Window : GameWindow {
         m_PrimiShader = new Shader("./Assets/Shaders/Primitive.vert", "./Assets/Shaders/Primitive.frag");
         m_AxisShader = new Shader("./Assets/Shaders/Axis.vert", "./Assets/Shaders/Axis.frag");
         AABB.Shader = m_PrimiShader;
+        Primitive.Shader = m_PrimiShader;
+        AxisRenderer.Shader = m_AxisShader;
         Texture texContainer = new("./Assets/Textures/container.png");
-        m_Axis = new(m_AxisShader);
+        m_Axis = new();
 
 
         GL.ClearColor(0.0f, 0.0f, 0.0f, 0.5f);
         GL.Enable(EnableCap.DepthTest);
 
-        m_Items =[
-            new Cube(new Transform(), Color4.Yellow, m_PrimiShader, texContainer),
-            new Sphere(0.5f, new Transform(new Vector3(3,3,3)), Color4.SpringGreen , m_PrimiShader),
-        ];
+        Random random = new();
+        m_Items = [];
 
+        for (int i = 0; i < 100; i++) {
+
+            m_Items.Add(
+                new Sphere(
+                    random.NextSingle(),
+                    new Transform(new Vector3(random.Next(-10, 10), random.Next(-10, 10), random.Next(-10, 10))),
+                    new Color4(random.NextSingle(), random.NextSingle(), random.NextSingle(), 1.0f)
+                )
+            );
+        }
+        //m_Items =[
+        //    //new Cube(new Transform(), Color4.Yellow, texContainer),
+        //    new Sphere(0.5f, new Transform(new Vector3(3,3,3)), Color4.SpringGreen),
+        //];
+        m_AABBs = [];
+
+        foreach (var item in m_Items) {
+            item.GetAABBPoints(out Vector3 A, out Vector3 B);
+            m_AABBs.Add(new AABB(A, B, Color4.LimeGreen));
+        }
         m_Camera = new Camera(Vector3.UnitZ * 3, Size.X / (float)Size.Y);
         CursorState = CursorState.Grabbed;
     }
@@ -67,7 +87,11 @@ public class Window : GameWindow {
         foreach (var item in m_Items) {
             item.Draw(m_Camera);
         }
-        GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
+        foreach (var aabb in m_AABBs) {
+            aabb.Draw(m_Camera);
+        }
+        
+        //GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
 
 
         SwapBuffers();
@@ -82,7 +106,7 @@ public class Window : GameWindow {
     protected override void OnUpdateFrame(FrameEventArgs e) {
         base.OnUpdateFrame(e);
 
-        m_Items[0].Transform.rotation.Y += (float)e.Time * 4.0f;
+        //m_Items[0].Transform.rotation.Y += (float)e.Time * 4.0f;
 
         if (!IsFocused) // Check to see if the window is focused
         {

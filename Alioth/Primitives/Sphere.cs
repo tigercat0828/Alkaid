@@ -2,7 +2,9 @@
     internal class Sphere : Primitive {
         float[] vertices;
         uint[] indices;
-        public Sphere(float radius, Transform transform, Color4 color, Shader shader) : base(transform, color, shader) {
+        float Radius = 1;
+        public Sphere(float radius, Transform transform, Color4 color) : base(transform, color) {
+            Radius = radius;
             GenerateSphere(radius, 10, 10, out List<float> vertexList, out List<uint> indexList);
             vertices = vertexList.ToArray();
             indices = indexList.ToArray();
@@ -18,13 +20,18 @@
             GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(float), indices, BufferUsageHint.StaticDraw);
           
 
-            var vertexLocation = shader.GetAttribLocation("aPosition");
+            var vertexLocation = Shader.GetAttribLocation("aPosition");
             GL.EnableVertexAttribArray(vertexLocation);
             GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
         }
         public override void Draw(Camera camera) {
             base.Draw(camera);
             GL.DrawElements(PrimitiveType.Triangles, indices.Length, DrawElementsType.UnsignedInt, 0);
+        }
+        public override void GetAABBPoints(out Vector3 A, out Vector3 B) {
+            Vector3 position = Transform.position;
+            A = position - new Vector3(Radius);
+            B = position + new Vector3(Radius);
         }
         public static void GenerateSphere(float radius, int numLatitudeLines, int numLongitudeLines, out List<float> vertices, out List<uint> indices) {
             vertices = new List<float>();
