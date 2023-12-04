@@ -56,7 +56,7 @@ public class Window : GameWindow {
 
             m_Items.Add(
                 new Sphere(
-                    random.NextSingle(),
+                    random.NextSingle()*2,
                     new Transform(new Vector3(random.Next(-10, 10), random.Next(-10, 10), random.Next(-10, 10))),
                     new Color4(random.NextSingle(), random.NextSingle(), random.NextSingle(), 1.0f)
                 )
@@ -82,7 +82,7 @@ public class Window : GameWindow {
 
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-        m_Axis.Render(m_Camera);
+        m_Axis.Draw(m_Camera);
         //GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
         foreach (var item in m_Items) {
             item.Draw(m_Camera);
