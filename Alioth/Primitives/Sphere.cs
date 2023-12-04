@@ -18,7 +18,7 @@
             EBO = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, EBO);
             GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(float), indices, BufferUsageHint.StaticDraw);
-          
+
 
             var vertexLocation = Shader.GetAttribLocation("aPosition");
             GL.EnableVertexAttribArray(vertexLocation);

@@ -52,8 +52,7 @@ public class Window : GameWindow {
         Random random = new();
         m_Items = [];
 
-        for (int i = 0; i < 100; i++) {
-
+        for (int i = 0; i < 32; i++) {
             m_Items.Add(
                 new Sphere(
                     random.NextSingle()*2,
@@ -67,11 +66,20 @@ public class Window : GameWindow {
         //    new Sphere(0.5f, new Transform(new Vector3(3,3,3)), Color4.SpringGreen),
         //];
         m_AABBs = [];
-
+        
         foreach (var item in m_Items) {
             item.GetAABBPoints(out Vector3 A, out Vector3 B);
-            m_AABBs.Add(new AABB(A, B, Color4.LimeGreen));
+            m_AABBs.Add(new AABB(A, B, Color4.GreenYellow));
         }
+        m_AABBs.Sort(new AABBComparator());
+    
+        for (int i = 0; i < 32; i+=2) {
+            m_AABBs.Add(new AABB(m_AABBs[i], m_AABBs[i + 1], Color4.Green));
+        }
+ 
+        //for (int i = 32; i < 48; i += 2) {
+        //    m_AABBs.Add(new AABB(m_AABBs[i], m_AABBs[i + 1], Color4.Lime));
+        //}
         m_Camera = new Camera(Vector3.UnitZ * 3, Size.X / (float)Size.Y);
         CursorState = CursorState.Grabbed;
     }
@@ -82,7 +90,7 @@ public class Window : GameWindow {
 
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-        m_Axis.Draw(m_Camera);
+        //m_Axis.Draw(m_Camera);
         //GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
         foreach (var item in m_Items) {
             item.Draw(m_Camera);
@@ -169,4 +177,22 @@ public class Window : GameWindow {
         m_Camera.Fov -= e.OffsetY;
     }
 
+}
+public class AABBComparator : IComparer<AABB> {
+    Random random = new();
+    public int Compare(AABB? x, AABB? y) {
+        int axis = random.Next(0, 3);
+        if (axis == 0) {
+            if (x.A.X > y.A.X) return 1;
+            else return -1;
+        }
+        else if(axis==1) {
+            if (x.A.Y > y.A.Y) return 1;
+            else return -1;
+        }
+        else {
+            if (x.A.Z > y.A.Z) return 1;
+            else return -1;
+        }
+    }
 }

@@ -12,6 +12,17 @@ namespace Alioth.Primitives {
         private readonly uint[] indices = [0, 1, 1, 2, 2, 3, 3, 0, 0, 4, 1, 5, 2, 6, 3, 7, 4, 5, 5, 6, 6, 7, 7, 4];
         public Vector3 A;
         public Vector3 B;
+        public AABB(AABB a, AABB b, Color4 color) : this(
+                new Vector3(
+                    Math.Min(a.A.X, b.A.X),
+                    Math.Min(a.A.Y, b.A.Y),
+                    Math.Min(a.A.Z, b.A.Z)),
+                new Vector3(
+                    Math.Max(a.B.X, b.B.X),
+                    Math.Max(a.B.Y, b.B.Y),
+                    Math.Max(a.B.Z, b.B.Z)), color
+            ) {
+        }
         public AABB(Vector3 a, Vector3 b, Color4 color) {
             A = a;
             B = b;
@@ -25,7 +36,6 @@ namespace Alioth.Primitives {
                 a.X, b.Y, b.Z,   // 5
                 b.X, b.Y, b.Z,   // 6
                 b.X, b.Y, a.Z,   // 7
-              
             ];
             VAO = GL.GenVertexArray();
             GL.BindVertexArray(VAO);
@@ -41,8 +51,6 @@ namespace Alioth.Primitives {
             var vertexLocation = Shader.GetAttribLocation("aPosition");
             GL.EnableVertexAttribArray(vertexLocation);
             GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
-
-       
         }
         public void Draw(Camera camera) {
             GL.BindVertexArray(VAO);
